@@ -1,10 +1,12 @@
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
-import { useContainer } from 'class-validator';
+import { useContainer, ValidationError } from 'class-validator';
+import { ValidationPipe } from '@nestjs/common/pipes';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.useGlobalPipes(new ValidationPipe());
   app.enableCors({
     allowedHeaders: ['Authorization', 'Content-Type', 'apikey', 'Accept-Encoding'],
     origin: '*',
