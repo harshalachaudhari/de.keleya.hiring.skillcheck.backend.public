@@ -77,6 +77,24 @@ describe('UserService', () => {
     });
 
     it('should return JWT Token for valid User', async () => {
+      prismaService.user.findUnique = jest.fn().mockReturnValueOnce(
+        {
+          "id": 7,
+          "name": "new name",
+          "email": "userRegular@postgmail.com",
+          "email_confirmed": true,
+          "is_admin": false,
+          "created_at": "2022-09-25T16:37:07.178Z",
+          "updated_at": "2022-09-25T16:39:26.726Z",
+          "credentials_id": 7,
+          "credentials": {
+            "id": 7,
+            "hash": "$2b$12$HNjg7G/Xctr7UnhxyOUg5eeUKCyly1YSNfFByi1PoavzJjOmO/YqO",
+            "created_at": "2022-09-25T16:37:07.178Z",
+            "updated_at": "2022-09-25T16:37:07.187Z"
+          }
+        }
+      );
       let result = await userService.authenticateAndGetJwtToken({ email: 'userRegular@postgmail.com', password: 'Password@123' });
 
       expect(result).toBeTruthy();
@@ -276,6 +294,7 @@ describe('UserService', () => {
     });
 
     it('Find single user with id 9 if UserId 9 is requesting it', async () => {
+
       prismaService.user.findUnique = jest.fn().mockReturnValueOnce(
         [
           {
@@ -313,8 +332,19 @@ describe('UserService', () => {
     // UPDATE
 
     it('Update single user datails like name', async () => {
+      prismaService.user.findUnique = jest.fn().mockReturnValueOnce(
+        {
+          id: 12,
+          name: 'new name',
+          email: 'mike@postgmail.com',
+          email_confirmed: true,
+          is_admin: false,
+          created_at: '2022-09-25T16:37:07.178Z',
+          updated_at: '2022-09-25T16:39:26.726Z',
+          credentials_id: 12
+        }
+      );
       prismaService.user.update = jest.fn().mockReturnValueOnce(
-
         {
           "id": 12,
           "name": "Updated name",
