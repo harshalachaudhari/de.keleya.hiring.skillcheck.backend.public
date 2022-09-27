@@ -98,6 +98,7 @@ yarn test
 
 - JWTToken:
 
+  - We can store the JWT secret to cloud service for eg: AWS Secret Manager and fetch that secret using library function. This makes app more secure.
   - Using single access token requires user to relogin after expiration duration. And as acess tokens are valid for short time.
   - We can introduce /refresh endpoint and logic for provisioning refresh token(this token have long validity in days) to the user.
   - Upon expiration user will have to just refresh token using refresh API (without Username/Password), this would require use of cookies.
