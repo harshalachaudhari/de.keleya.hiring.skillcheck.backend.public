@@ -30,13 +30,41 @@ async function main() {
       is_admin: false,
       credentials: {
         create: {
-          hash: '$2b$12$kooAUtwRLUTKN2VkZfIJgexzTWkwGI.G9ophg.XdJRyJWJi2rhy/e', //crypted PW: Password@123
+          hash: '$2b$12$.Az4q7.QuAHePddBBChtm.LANLIG5.mJ9t.1C7v63GtkA5XZiMpeC', //crypted PW: Password@123
         },
       },
     },
   });
 
-  console.log({ user1, user2 });
+  const user3 = await prisma.user.create({
+    data: {
+      name: 'mateo',
+      email: 'mateo@seed.com',
+      email_confirmed: true,
+      is_admin: false,
+      credentials: {
+        create: {
+          hash: '$2b$12$.Az4q7.QuAHePddBBChtm.LANLIG5.mJ9t.1C7v63GtkA5XZiMpeC', //crypted PW: Password@123
+        },
+      },
+    },
+  });
+
+  const user4 = await prisma.user.create({
+    data: {
+      name: 'mariam',
+      email: 'mariam@seed.com',
+      email_confirmed: true,
+      is_admin: false,
+      credentials: {
+        create: {
+          hash: '$2b$12$.Az4q7.QuAHePddBBChtm.LANLIG5.mJ9t.1C7v63GtkA5XZiMpeC', //crypted PW: Password@123
+        },
+      },
+    },
+  });
+
+  console.log({ user1, user2, user3, user4 });
 }
 
 main()
