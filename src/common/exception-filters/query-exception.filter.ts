@@ -14,8 +14,38 @@ export class QueryExceptionFilter {
     const request: Request = ctx.getRequest();
 
     switch (errorCode) {
+      case 'P2000':
+        message = 'Too Long Value Constraint Error.';
+        break;
+      case 'P2001':
+        message = 'Record Does Not Exist.';
+        break;
       case 'P2002':
-        message = 'Unique Constraint Error';
+        message = 'Unique Constraint Error.';
+        break;
+      case 'P2003':
+        message = 'Foreign Key Constraint Error.';
+        break;
+      case 'P2004':
+        message = 'Database Constraint Error.';
+        break;
+      case 'P2006':
+        message = 'Field Value Invalid Constraint Error.';
+        break;
+      case 'P2007':
+        message = 'Data Validation Constraint Error.';
+        break;
+      case 'P2011':
+        message = 'NULL Constraint Violation Error.';
+        break;
+      case 'P2013':
+        message = 'Missing Required Argument Constraint Error.';
+        break;
+      case 'P2020':
+        message = 'Provided OutOfRange Value Constraint Error.';
+        break;
+      case 'P2025':
+        message = 'Record not found.';
         break;
     }
 

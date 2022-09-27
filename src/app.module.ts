@@ -4,12 +4,15 @@ import { UserController } from './user/user.controller';
 import { UserService } from './user/user.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import * as Joi from 'joi';
-import { APP_FILTER } from '@nestjs/core';
+import { APP_FILTER, APP_GUARD } from '@nestjs/core';
 import { QueryExceptionFilter } from './common/exception-filters/query-exception.filter';
+import { RolesGuard } from './common/guards/roles.guard';
 import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './common/strategies/jwt.strategy';
 import { PassportModule } from '@nestjs/passport';
 import { AppController } from './app.controller';
+import { JwtAuthGuard } from './common/guards/jwt-auth.guard';
+import { UnencryptedPasswordValidator } from './common/validators/unencrypted-password-validator';
 
 @Module({
   imports: [
@@ -22,6 +25,7 @@ import { AppController } from './app.controller';
         NODE_ENV: Joi.string().valid('development', 'production', 'test', 'staging').default('development'),
         PORT: Joi.number().default(3000),
         JWT_SECRET: Joi.string(),
+        JWT_EXPIRATION_TIME: Joi.number(),
       }),
     }),
     PassportModule,
@@ -43,7 +47,12 @@ import { AppController } from './app.controller';
     PrismaService,
     ConfigService,
     JwtStrategy,
+    UnencryptedPasswordValidator,
     { provide: APP_FILTER, useClass: QueryExceptionFilter },
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
+    },
   ],
 })
-export class AppModule {}
+export class AppModule { }
