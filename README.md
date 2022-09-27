@@ -69,11 +69,49 @@ Command lines:
 - ![postman_tests.png](postman_tests.png)
 - Send us this screenshot as well as the export of your postman tests.
 - the following should run without errors:
+
 ```
 yarn
-npx migrate reset
+npx prisma migrate reset
 yarn test
 ```
+
 ### Your Notes Below Here
 
-...
+- The Postman_collection is commited to repository. Below are the Test_Results.
+- ![Tests as user](Tests_As_User1Screenshot.png)
+- ![Tests as user](Tests_As_User2Screenshot.png)
+- ![Tests as Admin](Tests_As_Admin_1Screenshot.png)
+- ![Tests as Admin](Tests_As_Admin_2Screenshot.png)
+
+### Improvements
+
+- Approach:
+
+  - We can separate authentication endpoints and user CRUD endpoints to make appliaction manageable.
+
+- JWTToken:
+
+  - Using single access token requires user to relogin after expiration duration. And as acess tokens are valid for short time.
+  - We can introduce /refresh endpoint and logic for provisioning refresh token(this token have long validity in days) to the user.
+  - Upon expiration user will have to just refresh token using refresh API (without Username/Password), this would require use of cookies.
+  - Refresh token should be stored encrypted to hash and then store in DB to avoid Data Leaks.
+
+- Data Models :
+
+  - We can create single table instead of two which includes two more columns hash, hashRt(refresh token hash).
+    Or
+  - We can just introduce one more column in credentials table as hashRt.(With the aim of keeping sensitive user data in separate table)
+
+- Endpoints:
+
+  - /refresh token to refresh token and avoild multiple login requests from same user.
+  - /createBulk or /createMany endpoint for admins. So single api call will create many users.
+  - /deleteBulk or /deleteMany endpoint for admins to delete outdated users data as per GDPR policy.
+    To be more performant for bulk endpoint we should run queries in batches.
+
+- Unit Tests:
+
+  - More unit tests should be added for controller and security checks.
+
+- ...
