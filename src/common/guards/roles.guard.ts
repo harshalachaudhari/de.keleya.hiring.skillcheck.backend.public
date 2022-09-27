@@ -16,6 +16,7 @@ export class RolesGuard implements CanActivate {
       if (request?.user.is_admin) {
         return roles.includes('admin');
       }
+
       if (!request?.user.is_admin) {
         let isUserAccessingOwnData;
         if (request?.params?.id) {
@@ -23,6 +24,8 @@ export class RolesGuard implements CanActivate {
         }
         else if (request?.body?.id) {
           isUserAccessingOwnData = (request?.user?.id === request.body.id);
+        } else if (request?.query?.id) {
+          isUserAccessingOwnData = (request?.query?.id).includes(request?.user?.id);
         } else if (Object.keys(request?.params).length === 0 && Object.keys(request?.body).length === 0) {
 
           isUserAccessingOwnData = true;
