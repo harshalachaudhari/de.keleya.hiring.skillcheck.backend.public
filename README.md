@@ -79,8 +79,14 @@ yarn test
 ### Your Notes Below Here
 
 - The Postman_collection is commited to repository. Below are the Test_Results.
+
+### As a user
+
 - ![Tests as user](Tests_As_User1Screenshot.png)
 - ![Tests as user](Tests_As_User2Screenshot.png)
+
+### As a admin
+
 - ![Tests as Admin](Tests_As_Admin_1Screenshot.png)
 - ![Tests as Admin](Tests_As_Admin_2Screenshot.png)
 
