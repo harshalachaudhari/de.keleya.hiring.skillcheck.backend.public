@@ -1,4 +1,5 @@
-import { IsEmail, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsDate, IsEmail, IsNumber, IsOptional, IsString } from 'class-validator';
+import { date } from 'joi';
 export class FindUserDto {
   @IsOptional()
   id?: number;
@@ -10,4 +11,17 @@ export class FindUserDto {
   @IsOptional()
   @IsEmail()
   email?: string;
+
+  @IsOptional()
+  @IsNumber()
+  limit?: number;
+
+  @IsOptional()
+  @IsNumber()
+  offset?: number;
+
+  @IsOptional()
+  @IsString()
+  updatedSince?: string;
+
 }

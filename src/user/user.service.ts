@@ -35,36 +35,39 @@ export class UserService {
    * @returns User[]
    */
   async find(findUserDto: FindUserDto, request: any) {
+    let { user } = request;
+
     const ids = request?.query?.id
       ? request.query.id.split(',').map(function (item: any) {
         return parseInt(item, 10);
       })
       : undefined;
 
-    let isNonAdminUser = !request?.user?.is_admin;
+    let isNonAdminUser = !user?.is_admin;
 
     if (request?.query) {
+
       let data = this.prisma.user.findMany({
-        take: request.query.limit ? parseInt(request.query.limit) : undefined,
-        skip: request.query.offset ? parseInt(request.query.offset) : undefined,
+        take: findUserDto?.limit || 10,
+        skip: findUserDto?.offset || 0,
         where: {
-          email: request.query.email,
+          email: findUserDto?.email,
           id: { in: ids },
           name: {
-            contains: request.query.name,
+            contains: findUserDto?.name,
           },
-          updated_at: { gte: request.query.updatedSince ? new Date(request.query.updatedSince) : undefined },
+          updated_at: { gte: findUserDto?.updatedSince ? new Date(findUserDto?.updatedSince).toISOString() : undefined },
         },
         orderBy: {
           id: 'desc',
         },
       });
       if (isNonAdminUser) {
-        return (await data).filter(record => record.id == request?.user?.id);
+        return (await data).filter(record => record.id == user.id);
       }
       return data;
     } else if (isNonAdminUser) {
-      return this.findUnique({ id: request?.user?.id });
+      return this.findUnique({ id: user.id });
     }
     else {
       return this.prisma.user.findMany();
