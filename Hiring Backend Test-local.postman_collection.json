@@ -410,6 +410,229 @@
 			"name": "As Admin",
 			"item": [
 				{
+					"name": "Find users with email",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Value should be 2\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].id).to.eql(2);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJsaXNhQHNlZWQuY29tIiwiaWF0IjoxNjY0MzY2OTE5LCJleHAiOjE2NjQzNjcxNTl9.0_DaoSnJkzVQJB6PEKGUKTGwgJPpJI9kLhc9qVfPLDk",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user?email=lisa@seed.com",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "email",
+									"value": "lisa@seed.com"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find users with updatedSince",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"",
+									"pm.test(\"Value should be 2\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].id).to.eql(2);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"postman.setGlobalVariable('date', (new Date('05 September 2022 14:48 UTC').toISOString()));\r",
+									"console.log(pm.globals.get(\"date\"));\r",
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJsaXNhQHNlZWQuY29tIiwiaWF0IjoxNjY0MzY2ODE2LCJleHAiOjE2NjQzNjcwNTZ9.wveO_3pBjaB0-kArJHtEvgbrH20mJbUlE3xP1p2ppkM",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user?updatedSince={{date}}",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "updatedSince",
+									"value": "{{date}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find users with limit and offset",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Value should be 2\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].id).to.eql(2);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									"// pm.globals.set(\"limit\", parseInt(10));\r",
+									"// pm.globals.set(\"offset\", parseInt(0));\r",
+									"// pm.globals.get(\"limit\");\r",
+									"// pm.globals.get(\"offset\");"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJsaXNhQHNlZWQuY29tIiwiaWF0IjoxNjY0MzY2ODUwLCJleHAiOjE2NjQzNjcwOTB9.eIJCtjQrgTH75VOfVaGE1AGsKw4htkcRvPiblzceCyQ",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user?limit=2&offset=5",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2"
+								},
+								{
+									"key": "offset",
+									"value": "5"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get own user multiple user ids",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Status code is 200\", function () {",
+									"    pm.response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJsaXNhQHNlZWQuY29tIiwiaWF0IjoxNjY0MzY2ODg0LCJleHAiOjE2NjQzNjcxMjR9.8J68WUK4EE223aPQmRHwEZRUTsnJQzW74Z6VbXBMcHA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user?id=1,2,3",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "id",
+									"value": "1,2,3"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Get Token",
 					"event": [
 						{
@@ -441,6 +664,16 @@
 						}
 					],
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJsaXNhQHNlZWQuY29tIiwiaWF0IjoxNjY0MzYwODU2LCJleHAiOjE2NjQzNjEwOTZ9.wGdjg4aRSEskP-d-E3RVCApvWOYXytUxOfCmpMth4r8",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
@@ -593,7 +826,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJsaXNhQHNlZWQuY29tIiwiaWF0IjoxNjY0MzAwNDEwLCJleHAiOjE2NjQzMDA2NTB9.xknMyqCwgBH18uZV9Drru2dRxAQGQyiE7C_Gjhl4m9Q",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJsaXNhQHNlZWQuY29tIiwiaWF0IjoxNjY0MzY2OTQ1LCJleHAiOjE2NjQzNjcxODV9.BgIYTP17EtqF0rkPXvxvTHeCcn07Huu6VGxJLf5AOQI",
 									"type": "string"
 								}
 							]
@@ -864,6 +1097,55 @@
 							"path": [
 								"user",
 								"authenticate"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Find users with limit",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Value should be 2\", function () {",
+									"    var jsonData = pm.response.json();",
+									"    pm.expect(jsonData[0].id).to.eql(2);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJsaXNhQHNlZWQuY29tIiwiaWF0IjoxNjY0MzY1NTU1LCJleHAiOjE2NjQzNjU3OTV9.IRsKutBRLNXmxFx5JYqMbIeSzr6VWHZpcdTE_BXRvMw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:3000/user?limit=2",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"user"
+							],
+							"query": [
+								{
+									"key": "limit",
+									"value": "2"
+								}
 							]
 						}
 					},
