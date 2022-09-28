@@ -111,7 +111,6 @@ yarn test
   - Refresh token should be stored encrypted to hash and then store in DB to avoid Data Leaks.
   
  - Dockerize App
-
   - It is best to create docker container image of the app. It makes it easy to maintain and brings agility.
 
 - Data Models :
