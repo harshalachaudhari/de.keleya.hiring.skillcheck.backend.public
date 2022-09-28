@@ -82,13 +82,18 @@ yarn test
 
 ### As a user
 
-- ![Tests as user](Tests_As_User1Screenshot.png)
-- ![Tests as user](Tests_As_User2Screenshot.png)
+- ![Tests as user](reports\Tests_As_User1Screenshot.png)
+- ![Tests as user](reports\Tests_As_User2.png)
 
 ### As a admin
 
-- ![Tests as Admin](Tests_As_Admin_1Screenshot.png)
-- ![Tests as Admin](Tests_As_Admin_2Screenshot.png)
+- ![Tests as Admin](reports\Tests_As_Admin_1Screenshot.png)
+- ![Tests as Admin](reports\Tests_As_Admin_2Screenshot.png)
+
+### E2E Tests
+
+- ![Unit tests](reports\E2E_tests.png)
+- ![Unit tests](reports\E2E_Unit_test.png)
 
 ### Improvements
 
@@ -120,5 +125,9 @@ yarn test
 - Unit Tests:
 
   - More unit tests should be added for controller and security checks.
+
+- Dockerize App
+
+  - It is best to create docker container image of the app. It makes it easy to maintain and brings agility.
 
 - ...
