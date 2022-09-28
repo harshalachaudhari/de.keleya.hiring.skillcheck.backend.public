@@ -83,7 +83,7 @@ yarn test
 ### As a user
 
 <img src="reports/Tests_As_User1Screenshot.png" width="80%"/>
-<img src="reports/Tests_As_User2.png" width="40%"/>
+<img src="reports/Tests_As_User2.png" width="80%"/>
 
 ### As a admin
 
