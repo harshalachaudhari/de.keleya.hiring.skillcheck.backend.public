@@ -270,17 +270,13 @@ export class UserService {
    */
   async validateToken(token: string) {
     const jwtToken = token.split(' ')[1];
-
-    const decodedJwtAccessToken = await this.jwtService.decode(jwtToken);
-
-    const currentTimestamp = new Date().getTime() / 1000;
-    const tokenIsNotExpired = decodedJwtAccessToken && (decodedJwtAccessToken['exp'] > currentTimestamp);
-
-    if (tokenIsNotExpired) {
-      return decodedJwtAccessToken;
+    try {
+      const decodedToken = this.jwtService.verify(jwtToken, {
+        secret: this.configService.get('JWT_SECRET'),
+      });
+      return decodedToken;
+    } catch (err) {
+      return false;
     }
-
-    return false;
-
   }
 }
