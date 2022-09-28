@@ -109,6 +109,10 @@ yarn test
   - We can introduce /refresh endpoint and logic for provisioning refresh token(this token have long validity in days) to the user.
   - Upon expiration user will have to just refresh token using refresh API (without Username/Password), this would require use of cookies.
   - Refresh token should be stored encrypted to hash and then store in DB to avoid Data Leaks.
+  
+ - Dockerize App
+
+  - It is best to create docker container image of the app. It makes it easy to maintain and brings agility.
 
 - Data Models :
 
@@ -126,9 +130,4 @@ yarn test
 - Unit Tests:
 
   - More unit tests should be added for controller and security checks.
-
-- Dockerize App
-
-  - It is best to create docker container image of the app. It makes it easy to maintain and brings agility.
-
 - ...
