@@ -82,19 +82,19 @@ yarn test
 
 ### As a user
 
-<img src="reports/Tests_As_User1Screenshot.png" width="45%"/>
-<img src="reports/Tests_As_User2.png" width="45%"/>
+<img src="reports/Tests_As_User1Screenshot.png" width="80%"/>
+<img src="reports/Tests_As_User2.png" width="40%"/>
 
 ### As a admin
 
-<img src="reports/Newadmintests.png" width="45%"/>
-<img src="reports/Newadmintest1.png" width="45%"/>
-<img src="reports/NewAdmintest2.png" width="45%"/>
+<img src="reports/Newadmintests.png" width="80%"/>
+<img src="reports/Newadmintest1.png" width="80%"/>
+<img src="reports/NewAdmintest2.png" width="80%"/>
 
 ### E2E Tests
 
-<img src="reports/E2E_tests.png" width="45%"/>
-<img src="reports/E2E_Unit_test.png" width="45%"/>
+<img src="reports/E2E_tests.png" width="80%"/>
+<img src="reports/E2E_Unit_test.png" width="80%"/>
 
 ### Improvements
 
