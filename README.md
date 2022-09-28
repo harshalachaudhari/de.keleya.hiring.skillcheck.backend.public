@@ -87,13 +87,14 @@ yarn test
 
 ### As a admin
 
-- ![Tests as Admin](reports\Tests_As_Admin_1Screenshot.png)
-- ![Tests as Admin](reports\Tests_As_Admin_2Screenshot.png)
+- ![Tests as Admin](reports\Newadmintests.png)
+- ![Tests as Admin](reports\Newadmintest1.png)
+- ![Tests as Admin](reports\NewAdmintest2.png)
 
 ### E2E Tests
 
-- ![Unit tests](reports\E2E_tests.png)
-- ![Unit tests](reports\E2E_Unit_test.png)
+- ![Unit_tests](reports\E2E_tests.png)
+- ![Unit_tests](reports\E2E_Unit_test.png)
 
 ### Improvements
 
