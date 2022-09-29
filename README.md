@@ -112,6 +112,8 @@ yarn test
   
  - Dockerize App
   - It is best to create docker container image of the app. It makes it easy to maintain and brings agility.
+  commands: docker build -t backend-challenge:1.0.0
+            docker run -p 3000:3000 -d backend-challenge:1.0.0
 
 - Data Models :
 
